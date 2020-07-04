@@ -14,5 +14,6 @@ namespace IEMEDEBE.IRepository
         void Delete(T entity);
         void Update(T entity);
         bool Exist(Func<T, bool> predicate);
+        void Save();
     }
 }

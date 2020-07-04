@@ -11,41 +11,50 @@ namespace IEMEDEBE.Repository
 {
     public class UserRepository : IRepository<User>
     {
-        private DbContext dbContext;
+        private DbContext Context;
 
         public UserRepository(DbContext dbContext)
         {
-            this.dbContext = dbContext;
+            Context = dbContext;
         }
 
         public void Add(User entity)
         {
-            throw new NotImplementedException();
+            Context.Set<User>().Add(entity);
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            Context.Set<User>().Remove(entity);
         }
 
         public bool Exist(Func<User, bool> predicate)
         {
-            throw new NotImplementedException();
+            return Context.Set<User>().FirstOrDefault(predicate) == null;
         }
 
         public User Get(Func<User, bool> predicate)
         {
-            throw new NotImplementedException();
+            User userToreturn = null;
+            userToreturn = Context.Set<User>().FirstOrDefault(predicate);
+            return userToreturn;
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            IEnumerable<User> returnListFromDB = Context.Set<User>().ToList();
+            return returnListFromDB;
+        }
+
+        public void Save()
+        {
+            Context.SaveChanges();
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            Context.Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

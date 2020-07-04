@@ -130,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="UnityResolver.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -155,6 +157,10 @@
     <ProjectReference Include="..\IEMEDEBE.BusinessLogic.Interface\IEMEDEBE.BusinessLogic.Interface.csproj">
       <Project>{BD25923D-6900-45C9-99AA-F41A921A664B}</Project>
       <Name>IEMEDEBE.BusinessLogic.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IEMEDEBE.BusinessLogic\IEMEDEBE.BusinessLogic.csproj">
+      <Project>{6ba4ae7c-f9c1-485e-bd2c-7135fe3fde9c}</Project>
+      <Name>IEMEDEBE.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\IEMEDEBE.Domain\IEMEDEBE.Domain.csproj">
       <Project>{781EDC02-6944-4AE0-B1D5-0D1779011CB7}</Project>

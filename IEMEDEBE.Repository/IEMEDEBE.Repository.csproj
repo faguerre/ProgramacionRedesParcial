@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="IEMEDEBEDbContext.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="SessionRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -123,7 +124,7 @@
       <Name>IEMEDEBE.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\IEMEDEBE.IRepository\IEMEDEBE.IRepository.csproj">
-      <Project>{2ED09E89-EF57-4094-ABB4-35FB806BF626}</Project>
+      <Project>{2ed09e89-ef57-4094-abb4-35fb806bf626}</Project>
       <Name>IEMEDEBE.IRepository</Name>
     </ProjectReference>
   </ItemGroup>

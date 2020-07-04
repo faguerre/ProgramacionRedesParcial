@@ -1,4 +1,5 @@
 ﻿using IEMEDEBE.Domain;
+using IEMEDEBE.Domain.Security;
 using IEMEDEBE.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,7 @@ namespace IEMEDEBE.Repository
 
         private readonly DbContext dbContext;
         private IRepository<User> userRepository;
+        private IRepository<Session> sessionRepository;
 
 
         public UnitOfWork(DbContext _dbContext) {
@@ -28,6 +30,19 @@ namespace IEMEDEBE.Repository
                 }
 
                 return userRepository;
+            }
+        }
+
+        public IRepository<Session> SessionRepository
+        {
+            get
+            {
+                if (sessionRepository == null)
+                {
+                    sessionRepository = new SessionRepository(dbContext);
+                }
+
+                return sessionRepository;
             }
         }
     }

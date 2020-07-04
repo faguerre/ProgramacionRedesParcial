@@ -17,7 +17,6 @@ namespace IEMEDEBE.AdminWebService.Controllers
     public class UserController : ApiController
     {
         private IUserLogic userLogic;
-        private static readonly SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1, 1);
 
         public UserController(IUserLogic _UserLogic)
         {
@@ -28,7 +27,6 @@ namespace IEMEDEBE.AdminWebService.Controllers
         public async Task<IHttpActionResult> Get(int id)
         {
 
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -46,17 +44,12 @@ namespace IEMEDEBE.AdminWebService.Controllers
             {
                 return BadRequest(e.Message);
             }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
         }
 
         [Route("")]
         public async Task<IHttpActionResult> GetAll()
         {
 
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -74,16 +67,11 @@ namespace IEMEDEBE.AdminWebService.Controllers
             {
                 return BadRequest(e.Message);
             }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
         }
 
         [Route("")]
         public async Task<IHttpActionResult> Post([FromBody]UserModel userModel)
         {
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -107,17 +95,11 @@ namespace IEMEDEBE.AdminWebService.Controllers
                 return BadRequest("User is null");
             }
 
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
-
         }
 
         [Route("{id}")]
         public async Task<IHttpActionResult> Put(int id, [FromBody]UserModel userModel)
         {
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -135,10 +117,6 @@ namespace IEMEDEBE.AdminWebService.Controllers
             {
                 return BadRequest(e.Message);
             }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
 
 
         }
@@ -146,7 +124,6 @@ namespace IEMEDEBE.AdminWebService.Controllers
         [Route("{id}")]
         public async Task<IHttpActionResult> Delete(int id)
         {
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -164,16 +141,11 @@ namespace IEMEDEBE.AdminWebService.Controllers
             {
                 return BadRequest(e.Message);
             }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
         }
 
         [Route("addfavourite")]
         public async Task<IHttpActionResult> AddFavouriteMovie([FromBody] UserFavMovieModel movie_favourite)
         {
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -191,16 +163,11 @@ namespace IEMEDEBE.AdminWebService.Controllers
             {
                 return BadRequest(e.Message);
             }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
         }
 
-        [Route("remmovefavourite")]
+        [Route("removefavourite")]
         public async Task<IHttpActionResult> RemoveFavouriteMovie([FromBody]UserFavMovieModel movie_favourite)
         {
-            await SemaphoreSlim.WaitAsync();
             try
             {
                 await Task.Yield();
@@ -217,10 +184,6 @@ namespace IEMEDEBE.AdminWebService.Controllers
             catch (ArgumentException e)
             {
                 return BadRequest(e.Message);
-            }
-            finally
-            {
-                SemaphoreSlim.Release();
             }
         }
     }
